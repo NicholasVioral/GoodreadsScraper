@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+    <title>Top Books Sorted by Rating</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Top Books Sorted by Rating</h1>
+    <form method="post">
+        <button type="submit">Generate Books</button>
+    </form>
+    <ul>
+    {% for book in books %}
+        <li>
+            <img class="book-image" src="{{ book.image_url }}" alt="{{ book.title }}">
+            <div class="book-details">
+                <a href="{{ book.book_url }}" class="book-title" target="_blank">{{ book.title }}</a>
+                <div class="book-author">by {{ book.author }}</div>
+                <div class="book-genre">{{ book.genre }}</div>
+                <div class="book-rating">Rating: {{ book.rating }}</div>
+                <div class="book-ratings-count">{{ book.ratings_count }} ratings</div>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
+
+
+
+
+
