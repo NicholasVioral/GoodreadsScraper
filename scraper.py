@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import sqlite3
 import re
+import time
 
 def book_exists(title, author):
     conn = sqlite3.connect('books.db')
@@ -99,8 +100,12 @@ def scrape_book(url, book_url):
         image_url = image_tag['src'] if image_tag else "https://dryofg8nmyqjw.cloudfront.net/images/no-cover.png"
         print(f"Parsed image URL: {image_url}")
 
-        genre_tag = soup.find('span', class_='Button__labelItem')
-        genre = genre_tag.get_text(strip=True) if genre_tag else "No genre found"
+        genre_section = soup.find('div', {'data-testid': 'genresList'})
+        print(f"Genre section HTML: {genre_section}")
+
+        genre_tags = genre_section.find_all('span', class_='Button__labelItem') if genre_section else []
+        genres = [genre_tag.get_text(strip=True) for genre_tag in genre_tags if genre_tag.get_text(strip=True) != "...more"]
+        genre = ', '.join(genres) if genres else "No genre found"
         print(f"Parsed genre: {genre}")
 
         ratings_count_tag = soup.find('span', {'data-testid': 'ratingsCount'})
@@ -125,18 +130,16 @@ def scrape_book(url, book_url):
 
 def scrape_books_from_file(file_path):
     books = []
-    with open(file_path, 'r') as file:
+    with open(file_path, 'r', encoding='utf-8') as file:
         lines = file.readlines()
     
-    with open(file_path, 'w') as file:
-        for line in lines:
-            title = line.strip()
-            if title:
-                book_info = search_book(title)
-                if book_info:
-                    books.append(book_info)
-                else:
-                    file.write(line)
+    for line in lines:
+        title = line.strip()
+        if title:
+            book_info = search_book(title)
+            if book_info:
+                books.append(book_info)
+            time.sleep(2)  # Simulate delay to prevent overloading the server
     return books
 
 # Example usage

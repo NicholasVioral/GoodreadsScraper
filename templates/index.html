@@ -9,6 +9,9 @@
     <form method="post">
         <button type="submit">Generate Books</button>
     </form>
+    <form method="post" action="{{ url_for('clear') }}">
+        <button type="submit">Clear Books</button>
+    </form>
     <ul>
     {% for book in books %}
         <li>
@@ -25,8 +28,6 @@
     </ul>
 </body>
 </html>
-
-
 
 
 

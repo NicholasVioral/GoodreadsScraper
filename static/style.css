@@ -5,14 +5,17 @@ body {
     margin: 0;
     padding: 20px;
 }
+
 h1 {
     color: #4682b4;
     text-align: center;
 }
+
 form {
     text-align: center;
     margin-bottom: 20px;
 }
+
 button {
     background-color: #ffcccb;
     color: #4682b4;
@@ -23,13 +26,16 @@ button {
     border-radius: 5px;
     margin: 5px;
 }
+
 button:hover {
     background-color: #ffb6c1;
 }
+
 ul {
     list-style-type: none;
     padding: 0;
 }
+
 li {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -39,19 +45,23 @@ li {
     display: flex;
     align-items: center;
 }
+
 li:nth-child(odd) {
     background-color: #f9f9f9;
 }
+
 .book-image {
     width: 50px;
     height: auto;
     margin-right: 15px;
 }
+
 .book-details {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
 }
+
 .book-title {
     font-size: 16px;
     font-weight: bold;
@@ -59,13 +69,23 @@ li:nth-child(odd) {
     text-decoration: none;
     margin-bottom: 5px;
 }
+
 .book-title:hover {
     text-decoration: underline;
 }
+
 .book-author, .book-genre, .book-rating, .book-ratings-count {
     font-size: 14px;
     color: #555;
 }
+
+.book-genre {
+    font-size: 14px;
+    color: #555;
+    word-wrap: break-word; /* Ensure long text wraps */
+    margin-bottom: 5px; /* Add margin for better spacing */
+}
+
 .book-rating {
     font-weight: bold;
     background-color: #ffcccb;
@@ -73,8 +93,8 @@ li:nth-child(odd) {
     border-radius: 3px;
     width: fit-content;
 }
+
 .book-ratings-count {
     font-size: 14px;
     color: #777;
 }
-
