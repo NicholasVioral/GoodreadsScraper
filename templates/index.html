@@ -6,11 +6,34 @@
 </head>
 <body>
     <h1>Top Books Sorted by Rating</h1>
-    <form method="post">
+    <form method="post" action="{{ url_for('home') }}">
         <button type="submit">Generate Books</button>
     </form>
     <form method="post" action="{{ url_for('clear') }}">
         <button type="submit">Clear Books</button>
+    </form>
+    <form method="get" action="{{ url_for('filter_by_genre') }}">
+        <button type="button" class="toggle-button" onclick="toggleGenres()">Select Genres</button>
+        <div id="genre-box" class="genre-box">
+            {% for genre in genres %}
+                <div>
+                    <input type="checkbox" name="genre" value="{{ genre }}" id="genre_{{ loop.index }}" {% if genre in selected_genres %}checked{% endif %}>
+                    <label for="genre_{{ loop.index }}">{{ genre }}</label>
+                </div>
+            {% endfor %}
+        </div>
+        <button type="submit">Filter</button>
+    </form>
+    <form method="get" action="{{ url_for('search_books') }}" class="search-form">
+        <input type="text" name="query" placeholder="Search by title or author">
+        <button type="submit">Search</button>
+    </form>
+    <form method="get" action="{{ url_for('sort_books') }}" class="sort-form">
+        <label for="sort_by">Sort by:</label>
+        <select name="sort_by" id="sort_by" onchange="this.form.submit()">
+            <option value="rating" {% if selected_sort == 'rating' %}selected{% endif %}>Rating</option>
+            <option value="ratings_count" {% if selected_sort == 'ratings_count' %}selected{% endif %}>Number of Ratings</option>
+        </select>
     </form>
     <ul>
     {% for book in books %}
@@ -26,8 +49,15 @@
         </li>
     {% endfor %}
     </ul>
+    <script>
+        function toggleGenres() {
+            var genreBox = document.getElementById('genre-box');
+            if (genreBox.style.display === 'none' || genreBox.style.display === '') {
+                genreBox.style.display = 'block';
+            } else {
+                genreBox.style.display = 'none';
+            }
+        }
+    </script>
 </body>
 </html>
-
-
-

@@ -21,15 +21,16 @@ def init_db():
 def add_columns():
     conn = sqlite3.connect('books.db')
     c = conn.cursor()
-    try:
-        c.execute('ALTER TABLE books ADD COLUMN genre TEXT')
-    except sqlite3.OperationalError:
-        print("Column 'genre' already exists.")
     
-    try:
+    # Check if 'genre' column exists
+    c.execute("PRAGMA table_info(books)")
+    columns = [col[1] for col in c.fetchall()]
+    if 'genre' not in columns:
+        c.execute('ALTER TABLE books ADD COLUMN genre TEXT')
+    
+    # Check if 'ratings_count' column exists
+    if 'ratings_count' not in columns:
         c.execute('ALTER TABLE books ADD COLUMN ratings_count INTEGER')
-    except sqlite3.OperationalError:
-        print("Column 'ratings_count' already exists.")
     
     conn.commit()
     conn.close()
@@ -37,5 +38,3 @@ def add_columns():
 if __name__ == '__main__':
     init_db()
     add_columns()
-
-

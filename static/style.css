@@ -1,13 +1,13 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f8ff;
-    color: #333;
+    background-color: #f5f5dc; /* Beige background for a classic look */
+    color: #4b2e2e; /* Dark brown text color */
     margin: 0;
     padding: 20px;
 }
 
 h1 {
-    color: #4682b4;
+    color: #8b4513; /* SaddleBrown color for the heading */
     text-align: center;
 }
 
@@ -16,9 +16,9 @@ form {
     margin-bottom: 20px;
 }
 
-button {
-    background-color: #ffcccb;
-    color: #4682b4;
+button, .toggle-button {
+    background-color: #cd5c5c; /* IndianRed background for buttons */
+    color: #fff; /* White text color for better contrast */
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -27,8 +27,8 @@ button {
     margin: 5px;
 }
 
-button:hover {
-    background-color: #ffb6c1;
+button:hover, .toggle-button:hover {
+    background-color: #b22222; /* FireBrick color for button hover */
 }
 
 ul {
@@ -37,8 +37,8 @@ ul {
 }
 
 li {
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: #fffaf0; /* FloralWhite background for list items */
+    border: 1px solid #8b4513; /* SaddleBrown border */
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -47,7 +47,7 @@ li {
 }
 
 li:nth-child(odd) {
-    background-color: #f9f9f9;
+    background-color: #fdf5e6; /* OldLace background for odd list items */
 }
 
 .book-image {
@@ -65,7 +65,7 @@ li:nth-child(odd) {
 .book-title {
     font-size: 16px;
     font-weight: bold;
-    color: #4682b4;
+    color: #8b4513; /* SaddleBrown color for book titles */
     text-decoration: none;
     margin-bottom: 5px;
 }
@@ -76,25 +76,66 @@ li:nth-child(odd) {
 
 .book-author, .book-genre, .book-rating, .book-ratings-count {
     font-size: 14px;
-    color: #555;
+    color: #4b2e2e; /* Dark brown color for book details */
 }
 
 .book-genre {
     font-size: 14px;
-    color: #555;
+    color: #4b2e2e;
     word-wrap: break-word; /* Ensure long text wraps */
     margin-bottom: 5px; /* Add margin for better spacing */
 }
 
 .book-rating {
     font-weight: bold;
-    background-color: #ffcccb;
+    background-color: #cd5c5c; /* IndianRed background for ratings */
     padding: 2px 5px;
     border-radius: 3px;
     width: fit-content;
+    color: #fff; /* White text color for ratings */
 }
 
 .book-ratings-count {
     font-size: 14px;
-    color: #777;
+    color: #4b2e2e;
 }
+
+/* Additional CSS for genre box */
+.genre-box {
+    display: none;
+    border: 1px solid #8b4513; /* SaddleBrown border for genre box */
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fffaf0; /* FloralWhite background for genre box */
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Add styles for the search and sort forms */
+.search-form, .sort-form {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-form input[type="text"], .sort-form select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #8b4513;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.search-form button, .sort-form button {
+    background-color: #cd5c5c;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.search-form button:hover, .sort-form button:hover {
+    background-color: #b22222;
+}
+
